@@ -1,3 +1,7 @@
 # ignore .env file and config file 
 .env
 config.json
+
+# Ignore .pyc files
+.pyc
+__pycache__

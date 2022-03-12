@@ -43,7 +43,6 @@ async def on_slash_command(interaction) -> None:
     print(
         f"Executed {interaction.data.name} command in {interaction.guild.name} (ID: {interaction.guild.id}) by {interaction.author} (ID: {interaction.author.id})")
 
-
 def init_commands(command_type):
     for file in os.listdir(f'./cogs/{command_type}'):
         if file.endswith('.py'):
@@ -55,10 +54,9 @@ def init_commands(command_type):
                 error = f'{type(e).__name__}: {e}'
                 print(f'Failed to load extension {file_name}')
                 
-
 if __name__ == '__main__':
     init_commands('slash')
-    init_commands('normal')
+    #init_commands('normal')
     
 bot.run(config['token'])
 
