@@ -147,6 +147,34 @@ def update_summons(conn, discord_id, summons):
 
     return profile 
 
+def update_spark(conn, discord_id, resources):
+    '''
+    Updates the spark statistics for a member profile as specified by the discord user ID.
+    Since not all resources need to be defined, the statement needs to be able to handle missing values.
+    '''
+    crystals = resources.get('crystals')
+    tickets = resources.get('tickets')
+    ten_tickets = resources.get('ten_tickets')
+    rolls = (crystals or 0) // 300 + (tickets or 0) + 10 * (ten_tickets or 0)
+
+    statement = '''UPDATE members SET
+    crystals = COALESCE(%s, crystals),
+    tickets = COALESCE(%s, tickets),
+    ten_tickets = COALESCE(%s, ten_tickets),
+    rolls = COALESCE(%s, rolls)
+    WHERE discord_id = %s
+    RETURNING *
+    '''
+
+    cur = conn.cursor()
+    cur.execute(statement, (crystals, tickets, ten_tickets, rolls, discord_id)
+    )
+    conn.commit()
+    profile = cur.fetchone()
+    cur.close()
+
+    return profile 
+
 def create_donation_table(conn):
     materials_list = 'materials_list.txt'
     items = []

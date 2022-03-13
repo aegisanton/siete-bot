@@ -16,7 +16,7 @@ LIGHT_SUMMONS = ['Zeus', 'Luminiera Omega', 'Lucifer', 'Metatron', 'Halluel and 
 DARK_SUMMONS = ['Hades', 'Celeste Omega', 'Bahamut', 'Sariel', 'Belial', 'Beelzebub', 'Zirnitra', 'Nyarlathotep', 'Typhon', 'Sariel (Holiday)']
 MISC_SUMMONS = ['Qilin', 'Huanglong', 'White Rabbit', 'Black Rabbit', 'Kaguya', 'Belle Sylphid', 'Nobiyo', 'Belial', 'Beelzebub', 'Cait Sith']
 
-def embed_profile(bot, profile, user):
+def embed_profile(bot, profile, user, spark=False, summon=False):
 
     _, gbf_id, _, crystals, tix, ten_tix, rolls, fire_a, fire_b, water_a, water_b, wind_a, wind_b, earth_a, earth_b, light_a, light_b, dark_a, dark_b, misc_a, misc_b = profile
 
@@ -24,12 +24,47 @@ def embed_profile(bot, profile, user):
     tix_emo = bot.get_emoji(952372462304251944)
     ten_emo = bot.get_emoji(952372451633926144)
 
+    if spark:
+        progress = round((float(rolls) / 300) * 100, 1)
+        metric = 'roll' if rolls == 1 else 'rolls'
+        embed = disnake.Embed(
+            title=f'**Spark progress updated for {user.nick or user.name}**!',
+            description=f'''{crystals_emo} {crystals}
+            {tix_emo} {tix}
+            {ten_emo} {ten_tix}
+
+            You currently have **{rolls}** {metric} ({progress}% of a spark)
+            ''',
+            color=0x74daff            
+        )
+        embed.set_thumbnail(
+            url=user.avatar.url
+        )
+
+        return embed
+
     fire_emo = bot.get_emoji(952542716313612398)
     water_emo = bot.get_emoji(952542724790288426)
     wind_emo = bot.get_emoji(952542742477701140)
     earth_emo = bot.get_emoji(952542733787078707)
     light_emo = bot.get_emoji(952542751105376286)
     dark_emo = bot.get_emoji(952542760509014036)
+
+    if summon:
+        embed = disnake.Embed(
+            title=f'**Support summons updated for {user.nick or user.name}**!',
+            description=f'''{fire_emo} {fire_a} {fire_b}
+            {water_emo} {water_a} {water_b}
+            {wind_emo} {wind_a} {wind_b}
+            {earth_emo} {earth_a} {earth_b}
+            {light_emo} {light_a} {light_b}
+            {dark_emo} {dark_a} {dark_b}
+            {misc_a} {misc_b}
+            ''',
+            color=0x74daff  
+        )
+
+        return embed
 
     embed = disnake.Embed(
         title=f'**Profile of {user.nick or user.name}**',
@@ -307,7 +342,7 @@ class Profile(commands.Cog, name='profile-slash'):
                 required=False
             ),
             Option(
-                name='tentickets',
+                name='ten_tickets',
                 description='The amount of 10-draw tickets to set',
                 type=OptionType.integer,
                 required=False
@@ -315,12 +350,10 @@ class Profile(commands.Cog, name='profile-slash'):
         ]
     )
     @commands.check(commands.has_role('Crew'))
-    async def spark(self, interaction, user=None):
+    async def spark(self, interaction, **resources):
         """
         """
-        if not user:
-            user = interaction.author
-        
+        user = interaction.user
         nick = user.nick or user.name
 
         # Retrieve profile if it exists
@@ -328,7 +361,6 @@ class Profile(commands.Cog, name='profile-slash'):
         conn = db.connect()
         profile = db.get_profile(conn, user.id)
 
-       
         # If a profile does not exist, exit with an error 
         if not profile:
             embed = disnake.Embed(
@@ -343,7 +375,8 @@ class Profile(commands.Cog, name='profile-slash'):
 
         # Update spark 
 
-        embed = embed_profile(self.bot, profile, user)
+        profile = db.update_spark(conn, user.id, resources)
+        embed = embed_profile(self.bot, profile, user, spark=True)
         await interaction.send(embed=embed)
 
     @commands.slash_command(
@@ -380,7 +413,7 @@ class Profile(commands.Cog, name='profile-slash'):
 
         profile = db.update_summons(conn, user.id, summons)
         conn.close()
-        embed = embed_profile(self.bot, profile, user)
+        embed = embed_profile(self.bot, profile, user, summon=True)
         await interaction.send(embed=embed)
 
         
