@@ -127,7 +127,7 @@ class Profile(commands.Cog, name='profile-slash'):
 
                 embed = disnake.Embed(
                     title=f'**Error!**',
-                    description=f'Profile for {nick} does not exist!'
+                    description=f'Profile for {nick} does not exist!',
                     color=0xd10000
                 )
 
