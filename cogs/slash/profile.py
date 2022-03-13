@@ -78,7 +78,8 @@ def embed_profile(bot, profile, user, spark=False, summon=False):
     )
     embed.add_field(
         name='GBF ID',
-        value=gbf_id
+        value=gbf_id,
+        inline=False
     )
     embed.add_field(
         name='Crystals',
@@ -94,49 +95,57 @@ def embed_profile(bot, profile, user, spark=False, summon=False):
     )
     embed.add_field(
         name='Draws',
-        value=rolls
+        value=rolls,
+        inline=False
     )
     embed.add_field(
         name='Fire Summons',
-        value=f'''{fire_emo} {fire_a}\n
+        value=f'''{fire_emo} {fire_a}
         {fire_emo} {fire_b}
-        '''
+        ''',
+        inline=False
     )
     embed.add_field(
         name='Water Summons',
-        value=f'''{water_emo} {water_a}\n
+        value=f'''{water_emo} {water_a}
         {water_emo} {water_b}
-        '''
+        ''',
+        inline=False
     )
     embed.add_field(
         name='Wind Summons',
-        value=f'''{wind_emo} {wind_a}\n
+        value=f'''{wind_emo} {wind_a}
         {wind_emo} {wind_b}
-        '''
+        ''',
+        inline=False
     )
     embed.add_field(
         name='Earth Summons',
-        value=f'''{earth_emo} {earth_a}\n
+        value=f'''{earth_emo} {earth_a}
         {earth_emo} {earth_b}
-        '''
+        ''',
+        inline=False
     )
     embed.add_field(
         name='Light Summons',
-        value=f'''{light_emo} {light_a}\n
+        value=f'''{light_emo} {light_a}
         {light_emo} {light_b}
-        '''
+        ''',
+        inline=False
     )
     embed.add_field(
         name='Dark Summons',
-        value=f'''{dark_emo} {dark_a}\n
+        value=f'''{dark_emo} {dark_a}
         {dark_emo} {dark_b}
-        '''
+        ''',
+        inline=False
     )
     embed.add_field(
         name='Misc Summons',
-        value=f'''{misc_a}\n
+        value=f'''{misc_a}
         {misc_b}
-        '''
+        ''',
+        inline=False
     )
 
     return embed 
