@@ -11,7 +11,9 @@ Siete Bot currently supports the following features:
   * Ability for crew members to update their spark progress and support summons
   * Ability to register donations to the island resort feature
 
-Furthermore, these features are planned in some way or another:
+Furthermore, these features are planned or considered in some way or another:
+  * Search function to find crew members with specific support summons and get their GBF IDs
+  * Ability to check interesting donation statistics
   * Twitter interactions for raids
   * Smoother organization for crew events like raid trains and co-op rooms
   * Guild Wars / Unite and Fight features
