@@ -47,7 +47,6 @@ class Input(disnake.ui.Modal):
 
         await interaction.response.send_message(embed=embed)
 
-
 class Profile(commands.Cog, name='profile-slash'):
     def __init__(self, bot):
         self.bot = bot
@@ -87,10 +86,18 @@ class Profile(commands.Cog, name='profile-slash'):
             await interaction.response.send_modal(modal=Input(interaction, conn))
         else:
             if not profile:
-                profile = db.create_profile(conn, user.id, (user.nick or user.name))
+                prof = db.create_profile(conn, user.id, (user.nick or user.name))
                 conn.close()
 
-            print(profile)
+            gbf_id = profile[1]
+            crystals = profile[3]
+            tix = profile[4]
+            ten_tix = profile[5]
+            rolls = profile[6]
+
+            crystals_emo = self.bot.get_emoji(952372312546607194)
+            tix_emo = self.bot.get_emoji(952372462304251944)
+            ten_emo = self.bot.get_emoji(952372451633926144)
 
             embed = disnake.Embed(
                 title=f'**Profile of {user.nick or user.name}**',
@@ -105,19 +112,23 @@ class Profile(commands.Cog, name='profile-slash'):
             )
             embed.add_field(
                 name='Crystals',
-                value=1
+                value=f'{crystals_emo} {crystals}',
+                inline=True
             )
             embed.add_field(
                 name='Draw Tickets',
-                value=1
+                value=f'{tix_emo} {tix}',
+                inline=True
             )
             embed.add_field(
                 name='10-Draw Tickets',
-                value=1
+                value=f'{ten_emo} {ten_tix}',
+                inline=True
             )
             embed.add_field(
                 name='Draws',
-                value=3
+                value=rolls,
+                inline=True
             )
 
             await interaction.send(embed=embed)
