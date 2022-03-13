@@ -1,4 +1,5 @@
 import psycopg2
+import psycopg2.sql as sql 
 import json
 import sys 
 import os 
@@ -188,11 +189,26 @@ def read_materials():
                 variable = line.lower().replace("'", '').replace('-', ' ').replace(' ', '_')
                 materials[line] = variable
 
-    print(materials)
     return materials
 
 def create_donation_table(conn):
-    read_materials()
+    materials = read_materials()
+    variables = list(materials.values())
+
+    cur = conn.cursor()
+
+    columns = [sql.Identifier(v).as_string(cur) + f' integer DEFAULT 0 CHECK ({sql.Identifier(v).as_string(cur)} >= 0)' for v in variables]
+
+    statement = 'CREATE TABLE IF NOT EXISTS donations (discord_id bigint REFERENCES members,{0})'
+
+    model_query = sql.SQL(statement)
+    column_list = sql.SQL(','.join(columns))
+
+    query = model_query.format(column_list)
+
+    cur.execute(query)
+    cur.close()
+    conn.commit()
 
 if __name__ == '__main__':
     conn = connect()
