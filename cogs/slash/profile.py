@@ -8,8 +8,53 @@ from disnake import ApplicationCommandInteraction, Option, OptionType, TextInput
 from disnake.ext import commands
 from utils import db
 
+def embed_profile(bot, profile, user):
+    gbf_id = profile[1]
+    crystals = profile[3]
+    tix = profile[4]
+    ten_tix = profile[5]
+    rolls = profile[6]
+
+    crystals_emo = bot.get_emoji(952372312546607194)
+    tix_emo = bot.get_emoji(952372462304251944)
+    ten_emo = bot.get_emoji(952372451633926144)
+
+    embed = disnake.Embed(
+        title=f'**Profile of {user.nick or user.name}**',
+        color=0x74daff
+    )
+    embed.set_thumbnail(
+        url=user.avatar.url
+    )
+    embed.add_field(
+        name='GBF ID',
+        value=gbf_id
+    )
+    embed.add_field(
+        name='Crystals',
+        value=f'{crystals_emo} {crystals}',
+        inline=True
+    )
+    embed.add_field(
+        name='Draw Tickets',
+        value=f'{tix_emo} {tix}',
+        inline=True
+    )
+    embed.add_field(
+        name='10-Draw Tickets',
+        value=f'{ten_emo} {ten_tix}',
+        inline=True
+    )
+    embed.add_field(
+        name='Draws',
+        value=rolls,
+        inline=True
+    )
+
+    return embed 
+
 class Input(disnake.ui.Modal):
-    def __init__(self, interaction, conn):
+    def __init__(self, interaction, conn, bot):
         super().__init__(
             title='Create Profile',
             custom_id=f'create_profile-{interaction.id}',
@@ -26,6 +71,7 @@ class Input(disnake.ui.Modal):
         )
         self.conn = conn
         self.interaction= interaction
+        self.bot = bot 
     
     async def callback(self, interaction):
         gbf_id = interaction.text_values.get(f'gbf_id-{self.interaction.id}')
@@ -33,18 +79,7 @@ class Input(disnake.ui.Modal):
         profile = db.create_profile(self.conn, user.id, (user.nick or user.name), gbf_id=gbf_id)
         self.conn.close()
 
-        embed = disnake.Embed(
-            title=f'**Profile of {user.nick or user.name}**',
-            color=0x74daff
-        )
-        embed.set_thumbnail(
-            url=user.avatar.url
-        )
-        embed.add_field(
-            name='GBF ID',
-            value=gbf_id
-        )
-
+        embed = embed_profile(self.bot, profile, user)
         await interaction.response.send_message(embed=embed)
 
 class Profile(commands.Cog, name='profile-slash'):
@@ -53,7 +88,7 @@ class Profile(commands.Cog, name='profile-slash'):
 
     @commands.slash_command(
         name='profile',
-        description='Checks the profile of a crew member and create one if they do not have one.',
+        description='Checks the profile of a crew member or yourself.',
         options=[
             Option(
                 name='user',
@@ -83,53 +118,23 @@ class Profile(commands.Cog, name='profile-slash'):
 
         if not profile and user == interaction.author:
             gbf_id = None 
-            await interaction.response.send_modal(modal=Input(interaction, conn))
+            await interaction.response.send_modal(modal=Input(interaction, conn, self.bot))
+            return
         else:
             if not profile:
-                prof = db.create_profile(conn, user.id, (user.nick or user.name))
-                conn.close()
+                #prof = db.create_profile(conn, user.id, (user.nick or user.name))
+                #conn.close()
 
-            gbf_id = profile[1]
-            crystals = profile[3]
-            tix = profile[4]
-            ten_tix = profile[5]
-            rolls = profile[6]
+                embed = disnake.Embed(
+                    title=f'**Error!**',
+                    description=f'Profile for {nick} does not exist!'
+                    color=0xd10000
+                )
 
-            crystals_emo = self.bot.get_emoji(952372312546607194)
-            tix_emo = self.bot.get_emoji(952372462304251944)
-            ten_emo = self.bot.get_emoji(952372451633926144)
+                await interaction.send(embed=embed)
+                return
 
-            embed = disnake.Embed(
-                title=f'**Profile of {user.nick or user.name}**',
-                color=0x74daff
-            )
-            embed.set_thumbnail(
-                url=user.avatar.url
-            )
-            embed.add_field(
-                name='GBF ID',
-                value=gbf_id
-            )
-            embed.add_field(
-                name='Crystals',
-                value=f'{crystals_emo} {crystals}',
-                inline=True
-            )
-            embed.add_field(
-                name='Draw Tickets',
-                value=f'{tix_emo} {tix}',
-                inline=True
-            )
-            embed.add_field(
-                name='10-Draw Tickets',
-                value=f'{ten_emo} {ten_tix}',
-                inline=True
-            )
-            embed.add_field(
-                name='Draws',
-                value=rolls,
-                inline=True
-            )
+            embed = embed_profile(self.bot, profile, user)
 
             await interaction.send(embed=embed)
         
