@@ -28,12 +28,12 @@ def embed_profile(bot, profile, user, spark=False, summon=False):
         progress = round((float(rolls) / 300) * 100, 1)
         metric = 'roll' if rolls == 1 else 'rolls'
         embed = disnake.Embed(
-            title=f'**Spark progress updated for {user.nick or user.name}**!',
+            title=f'**Spark progress for {user.nick or user.name}**',
             description=f'''{crystals_emo} {crystals}
             {tix_emo} {tix}
             {ten_emo} {ten_tix}
 
-            You currently have **{rolls}** {metric} ({progress}% of a spark)
+            {user.nick or user.name} currently has **{rolls}** {metric} ({progress}% of a spark)
             ''',
             color=0x74daff            
         )
@@ -52,16 +52,19 @@ def embed_profile(bot, profile, user, spark=False, summon=False):
 
     if summon:
         embed = disnake.Embed(
-            title=f'**Support summons updated for {user.nick or user.name}**!',
-            description=f'''{fire_emo} {fire_a} {fire_b}
-            {water_emo} {water_a} {water_b}
-            {wind_emo} {wind_a} {wind_b}
-            {earth_emo} {earth_a} {earth_b}
-            {light_emo} {light_a} {light_b}
-            {dark_emo} {dark_a} {dark_b}
-            {misc_a} {misc_b}
+            title=f'**Support summons set by {user.nick or user.name}**',
+            description=f'''{fire_emo} `{fire_a}` `{fire_b}`
+            {water_emo} `{water_a}` `{water_b}`
+            {wind_emo} `{wind_a}` `{wind_b}`
+            {earth_emo} `{earth_a}` `{earth_b}`
+            {light_emo} `{light_a}` `{light_b}`
+            {dark_emo} `{dark_a}` `{dark_b}`
+            `{misc_a}` `{misc_b}`
             ''',
             color=0x74daff  
+        )
+        embed.set_thumbnail(
+            url=user.avatar.url
         )
 
         return embed

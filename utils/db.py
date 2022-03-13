@@ -175,16 +175,24 @@ def update_spark(conn, discord_id, resources):
 
     return profile 
 
-def create_donation_table(conn):
-    materials_list = 'materials_list.txt'
-    items = []
+def read_materials():
+    file_path = 'materials_list.txt'
+    materials = {}
 
-    with open(materials_list) as f:
+    with open(file_path) as f:
         for line in f:
             # Remove comments and empty lines 
             if not line.startswith('#') and line != '\n':
-                line = line.rstrip().replace("'", '').replace('-', ' ')
-                items.append(line)
+                line = line.strip()
+                
+                variable = line.lower().replace("'", '').replace('-', ' ').replace(' ', '_')
+                materials[line] = variable
+
+    print(materials)
+    return materials
+
+def create_donation_table(conn):
+    read_materials()
 
 if __name__ == '__main__':
     conn = connect()
