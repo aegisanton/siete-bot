@@ -147,15 +147,15 @@ def update_summons(conn, discord_id, summons):
 
     return profile 
 
-def update_spark(conn, discord_id, resources):
+def update_spark(conn, discord_id, resources, profile):
     '''
     Updates the spark statistics for a member profile as specified by the discord user ID.
     Since not all resources need to be defined, the statement needs to be able to handle missing values.
     '''
-    crystals = resources.get('crystals')
-    tickets = resources.get('tickets')
-    ten_tickets = resources.get('ten_tickets')
-    rolls = (crystals or 0) // 300 + (tickets or 0) + 10 * (ten_tickets or 0)
+    crystals = resources.get('crystals', profile[3])
+    tickets = resources.get('tickets', profile[4])
+    ten_tickets = resources.get('ten_tickets', profile[5])
+    rolls = crystals // 300 + tickets + 10 * ten_tickets
 
     statement = '''UPDATE members SET
     crystals = COALESCE(%s, crystals),
@@ -184,7 +184,7 @@ def read_materials():
             # Remove comments and empty lines 
             if not line.startswith('#') and line != '\n':
                 line = line.strip()
-                
+
                 variable = line.lower().replace("'", '').replace('-', ' ').replace(' ', '_')
                 materials[line] = variable
 

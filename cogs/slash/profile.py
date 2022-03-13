@@ -378,7 +378,7 @@ class Profile(commands.Cog, name='profile-slash'):
 
         # Update spark 
 
-        profile = db.update_spark(conn, user.id, resources)
+        profile = db.update_spark(conn, user.id, resources, profile)
         embed = embed_profile(self.bot, profile, user, spark=True)
         await interaction.send(embed=embed)
 
