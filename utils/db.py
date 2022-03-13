@@ -59,25 +59,31 @@ def create_profile_table(conn):
 
 def drop_table(conn, table_name):
     '''
-    CURRENTLY BROKEN: syntax error 
+    Drops the specified table.
     '''
-    statement = '''DROP TABLE IF EXISTS %s
+    statement = '''DROP TABLE IF EXISTS {0}
     CASCADE
     '''
 
     cur = conn.cursor()
-    cur.execute(statement, (table_name,))
+    model_query = sql.SQL(statement)
+    query = model_query.format(sql.Identifier(table_name))
+
+    cur.execute(query)
     conn.commit()
     cur.close()
 
 def drop_all_rows(conn, table_name):
     '''
-    CURRENTLY BROKEN: syntax error 
+    Drops all rows from the specified table.
     '''
-    statement = 'DELETE FROM members'
+    statement = 'DELETE FROM {0}'
 
     cur = conn.cursor()
-    cur.execute(statement)
+    model_query = sql.SQL(statement)
+    query = model_query.format(sql.Identifier(table_name))
+
+    cur.execute(query)
     conn.commit()
     cur.close()
 
@@ -199,7 +205,7 @@ def create_donation_table(conn):
 
     columns = [sql.Identifier(v).as_string(cur) + f' integer DEFAULT 0 CHECK ({sql.Identifier(v).as_string(cur)} >= 0)' for v in variables]
 
-    statement = 'CREATE TABLE IF NOT EXISTS donations (discord_id bigint REFERENCES members,{0})'
+    statement = 'CREATE TABLE IF NOT EXISTS donations (discord_id bigint PRIMARY KEY REFERENCES members,{0})'
 
     model_query = sql.SQL(statement)
     column_list = sql.SQL(','.join(columns))
@@ -210,10 +216,34 @@ def create_donation_table(conn):
     cur.close()
     conn.commit()
 
+def save_donation(conn, discord_id, material, quantity):
+    '''
+    Registers a donation. Creates a row in the donation table if there doesn't exist one for the user specified by the Discord ID.
+    '''
+    statement = '''INSERT INTO donations (discord_id, {0})
+    VALUES (%s, %s)
+    ON CONFLICT (discord_id) DO UPDATE
+        SET {0} = donations.{0} + EXCLUDED.{0}
+    RETURNING {0}
+    '''
+
+    cur = conn.cursor()
+    model_query = sql.SQL(statement)
+    material = sql.Identifier(material)
+    query = model_query.format(material)
+
+    cur.execute(query, (discord_id, quantity))
+    row = cur.fetchone()
+    cur.close()
+    conn.commit()
+
+    return row 
+
 if __name__ == '__main__':
     conn = connect()
     if conn:
         #create_profile_table(conn)
+        #drop_table(conn, 'donations')
         create_donation_table(conn)
         #drop_all_rows(conn, 'members')
         conn.close()
