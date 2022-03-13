@@ -92,8 +92,8 @@ def create_profile(conn, discord_id, server_nick, gbf_id=None):
 
     cur = conn.cursor()
     cur.execute(statement, (discord_id, server_nick, gbf_id))
-    profile = cur.fetchone()
     conn.commit()
+    profile = cur.fetchone()
     cur.close()
 
     return profile
@@ -107,6 +107,41 @@ def get_profile(conn, discord_id):
     '''
     cur = conn.cursor()
     cur.execute(statement, (discord_id,))
+    profile = cur.fetchone()
+    cur.close()
+
+    return profile 
+
+def update_summons(conn, discord_id, summons):
+    '''
+    Updates the support summons set on a member profile as specified by the discord user ID.
+    Since not all summons need to be defined, the statement needs to be able to handle missing values.
+    '''
+    statement = '''UPDATE members SET
+    fire_a = COALESCE(%s, fire_a),
+    fire_b = COALESCE(%s, fire_b),
+    water_a = COALESCE(%s, water_a),
+    water_b = COALESCE(%s, water_b),
+    wind_a = COALESCE(%s, wind_a),
+    wind_b = COALESCE(%s, wind_b),
+    earth_a = COALESCE(%s, earth_a),
+    earth_b = COALESCE(%s, earth_b),
+    light_a = COALESCE(%s, light_a),
+    light_b = COALESCE(%s, light_b),
+    dark_a = COALESCE(%s, dark_a),
+    dark_b = COALESCE(%s, dark_b),
+    misc_a = COALESCE(%s, misc_a),
+    misc_b = COALESCE(%s, misc_b)
+    WHERE discord_id = %s
+    RETURNING *
+    '''
+    cur = conn.cursor()
+    cur.execute(statement, (summons.get('fire_a'), summons.get('fire_b'), summons.get('water_a'), summons.get('water_b'), 
+                            summons.get('wind_a'), summons.get('wind_b'), summons.get('earth_a'), summons.get('earth_b'),
+                            summons.get('light_a'), summons.get('light_b'), summons.get('dark_a'), summons.get('dark_b'),
+                            summons.get('misc_a'), summons.get('misc_b'), discord_id)
+    )
+    conn.commit()
     profile = cur.fetchone()
     cur.close()
 

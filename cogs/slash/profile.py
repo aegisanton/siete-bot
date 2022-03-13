@@ -8,6 +8,14 @@ from disnake import ApplicationCommandInteraction, Option, OptionType, TextInput
 from disnake.ext import commands
 from utils import db
 
+FIRE_SUMMONS = ['Agni', 'Colossus Omega', 'Shiva', 'Michael', 'Red Hare', 'Surtr', 'Wilnas', 'Athena (Summer)', 'Satyr (Summer)']
+WATER_SUMMONS = ['Varuna', 'Leviathan Omega', 'Europa', 'Gabriel', 'Charybdis', 'Princess Long Ji', 'Bonito', 'Kaguya', 'Macual Marius (Summer)']
+WIND_SUMMONS = ['Zephyrus', 'Tiamat Omega', 'Grimnir', 'Raphael', 'Owlcat', 'Elil', 'Ewiyar', 'Demonbream', 'Freyr', 'Rose Queen (Summer)', 'Tiamat (Summer)']
+EARTH_SUMMONS = ['Titan', 'Yggdrasil Omega', 'Godsworn Alexiel', 'Uriel', 'Mammoth', 'Dogu', 'Galleon', 'Gorilla', 'Tsuchinoko', 'Freyr (Yukata)', 'Mandrake (Summer)', 'Yggdrasil (Summer)']
+LIGHT_SUMMONS = ['Zeus', 'Luminiera Omega', 'Lucifer', 'Metatron', 'Halluel and Malluel', 'Grand Order', 'Artemis', 'Heimdallr', 'Aphrodite', 'Thor', 'Kaguya (Summer)']
+DARK_SUMMONS = ['Hades', 'Celeste Omega', 'Bahamut', 'Sariel', 'Belial', 'Beelzebub', 'Zirnitra', 'Nyarlathotep', 'Typhon', 'Sariel (Holiday)']
+MISC_SUMMONS = ['Qilin', 'Huanglong', 'White Rabbit', 'Black Rabbit', 'Kaguya', 'Belle Sylphid', 'Nobiyo', 'Belial', 'Beelzebub', 'Cait Sith']
+
 def embed_profile(bot, profile, user):
 
     _, gbf_id, _, crystals, tix, ten_tix, rolls, fire_a, fire_b, water_a, water_b, wind_a, wind_b, earth_a, earth_b, light_a, light_b, dark_a, dark_b, misc_a, misc_b = profile
@@ -70,8 +78,8 @@ def embed_profile(bot, profile, user):
     )
     embed.add_field(
         name='Earth Summons',
-        value=f'''{earth_emo} {water_a}\n
-        {earth_emo} {water_b}
+        value=f'''{earth_emo} {earth_a}\n
+        {earth_emo} {earth_b}
         '''
     )
     embed.add_field(
@@ -127,6 +135,107 @@ class Input(disnake.ui.Modal):
 class Profile(commands.Cog, name='profile-slash'):
     def __init__(self, bot):
         self.bot = bot
+
+    summon_options = [
+        Option(
+            name='fire_a',
+            description='Fire Support Summon A',
+            type=OptionType.string,
+            choices=FIRE_SUMMONS,
+            required=False
+        ),
+        Option(
+            name='fire_b',
+            description='Fire Support Summon B',
+            type=OptionType.string,
+            choices=FIRE_SUMMONS,
+            required=False
+        ),
+        Option(
+            name='water_a',
+            description='Water Support Summon A',
+            type=OptionType.string,
+            choices=WATER_SUMMONS,
+            required=False
+        ),
+        Option(
+            name='water_b',
+            description='Water Support Summon B',
+            type=OptionType.string,
+            choices=WATER_SUMMONS,
+            required=False
+        ),
+        Option(
+            name='wind_a',
+            description='Wind Support Summon A',
+            type=OptionType.string,
+            choices=WIND_SUMMONS,
+            required=False
+        ),
+        Option(
+            name='wind_b',
+            description='Wind Support Summon B',
+            type=OptionType.string,
+            choices=WIND_SUMMONS,
+            required=False
+        ),    
+        Option(
+            name='earth_a',
+            description='Earth Support Summon A',
+            type=OptionType.string,
+            choices=EARTH_SUMMONS,
+            required=False
+        ),
+        Option(
+            name='earth_b',
+            description='Earth Support Summon B',
+            type=OptionType.string,
+            choices=EARTH_SUMMONS,
+            required=False
+        ),
+        Option(
+            name='light_a',
+            description='Light Support Summon A',
+            type=OptionType.string,
+            choices=LIGHT_SUMMONS,
+            required=False
+        ),
+        Option(
+            name='light_b',
+            description='Light Support Summon B',
+            type=OptionType.string,
+            choices=LIGHT_SUMMONS,
+            required=False
+        ),
+        Option(
+            name='dark_a',
+            description='Dark Support Summon A',
+            type=OptionType.string,
+            choices=DARK_SUMMONS,
+            required=False
+        ),
+        Option(
+            name='dark_b',
+            description='Dark Support Summon B',
+            type=OptionType.string,
+            choices=DARK_SUMMONS,
+            required=False
+        ),
+        Option(
+            name='misc_a',
+            description='Misc Support Summon A',
+            type=OptionType.string,
+            choices=MISC_SUMMONS,
+            required=False
+        ),
+        Option(
+            name='misc_b',
+            description='Misc Support Summon B',
+            type=OptionType.string,
+            choices=MISC_SUMMONS,
+            required=False
+        ),
+    ]
 
     @commands.slash_command(
         name='profile',
@@ -240,100 +349,14 @@ class Profile(commands.Cog, name='profile-slash'):
     @commands.slash_command(
         name='summons',
         description='Update your support summons.',
-        options=[
-            Option(
-                name='fire_a',
-                description='Fire Support Summon A',
-                type=OptionType.string,
-                required=False
-            ),
-            Option(
-                name='fire_b',
-                description='Fire Support Summon B',
-                type=OptionType.string,
-                required=False
-            ),
-            Option(
-                name='water_a',
-                description='Water Support Summon A',
-                type=OptionType.string,
-                required=False
-            ),
-            Option(
-                name='water_b',
-                description='Water Support Summon B',
-                type=OptionType.string,
-                required=False
-            ),
-            Option(
-                name='wind_a',
-                description='Wind Support Summon A',
-                type=OptionType.string,
-                required=False
-            ),
-            Option(
-                name='wind_b',
-                description='Wind Support Summon B',
-                type=OptionType.string,
-                required=False
-            ),    
-            Option(
-                name='earth_a',
-                description='Earth Support Summon A',
-                type=OptionType.string,
-                required=False
-            ),
-            Option(
-                name='earth_b',
-                description='Earth Support Summon B',
-                type=OptionType.string,
-                required=False
-            ),
-            Option(
-                name='light_a',
-                description='Light Support Summon A',
-                type=OptionType.string,
-                required=False
-            ),
-            Option(
-                name='light_b',
-                description='Light Support Summon B',
-                type=OptionType.string,
-                required=False
-            ),
-            Option(
-                name='dark_a',
-                description='Dark Support Summon A',
-                type=OptionType.string,
-                required=False
-            ),
-            Option(
-                name='dark_b',
-                description='Water Support Summon B',
-                type=OptionType.string,
-                required=False
-            ),
-            Option(
-                name='misc_a',
-                description='Misc Support Summon A',
-                type=OptionType.string,
-                required=False
-            ),
-            Option(
-                name='misc_b',
-                description='Misc Support Summon B',
-                type=OptionType.string,
-                required=False
-            ),
-        ]
+        options=summon_options
     )
     @commands.check(commands.has_role('Crew'))
-    async def summons(self, interaction, user=None):
+    async def summons(self, interaction, **summons):
         """
         """
-        if not user:
-            user = interaction.author
-        
+
+        user = interaction.user
         nick = user.nick or user.name
 
         # Retrieve profile if it exists
@@ -341,7 +364,6 @@ class Profile(commands.Cog, name='profile-slash'):
         conn = db.connect()
         profile = db.get_profile(conn, user.id)
 
-       
         # If a profile does not exist, exit with an error 
         if not profile:
             embed = disnake.Embed(
@@ -354,12 +376,13 @@ class Profile(commands.Cog, name='profile-slash'):
             conn.close()
             return
 
-        # Update spark 
+        # Update support summons
 
+        profile = db.update_summons(conn, user.id, summons)
+        conn.close()
         embed = embed_profile(self.bot, profile, user)
         await interaction.send(embed=embed)
 
         
-
 def setup(bot):
     bot.add_cog(Profile(bot))
