@@ -1,0 +1,393 @@
+# Common Resources 
+Rupie
+Champion Merit 
+Supreme Merit
+Legendary Merit 
+Blue Sky Crystal 
+Damascus Grain
+Damascus Crystal 
+
+# Quartz
+Wind Quartz
+Fire Quartz
+Water Quartz
+Earth Quartz 
+Light Quartz 
+Dark Quartz 
+
+# Weapon Stones 
+Sword Stone
+Dagger Stone 
+Spear Stone 
+Axe Stone
+Staff Stone 
+Pistol Stone 
+Melee Stone 
+Bow Stone
+Harp Stone 
+Katana Stone
+
+# Centrums
+Galbinus Centrum
+Rubeus Centrum
+Indicus Centrum
+Luteus Centrum
+Niveus Centrum
+Ater Centrum
+Silver Centrum
+
+# Scales
+Green Dragon Scale
+Red Dragon Scale
+Blue Dragon Scale
+Brown Dragon Scale
+White Dragon Scale
+Black Dragon Scale
+
+# Urns 
+Fire Urn 
+Water Urn 
+Earth Urn 
+Wind Urn 
+Light Urn 
+Dark Urn 
+
+# Trial Fragments
+Hellfire Fragment 
+Deluge Fragment 
+Wasteland Fragment 
+Typhoon Fragment 
+
+# Books and Tomes
+Green Tome 
+Red Tome 
+Blue Tome 
+Brown Tome 
+White Tome 
+Black Tome 
+Gale Scroll
+Hellfire Scroll
+Flood Scroll
+Thunder Scroll
+Skylight Scroll
+Chasm Scroll
+Tempest Whorl
+Infernal Whorl
+Tidal Whorl
+Seismic Whorl
+Radiant Whorl
+Umbral Whorl
+
+# Orbs
+Wind Orb 
+Fire Orb 
+Water Orb 
+Earth Orb
+Light Orb
+Dark Orb
+Cyclone Orb
+Inferno Orb 
+Frost Orb 
+Rumbling Orb
+Shining Orb
+Abysm Orb 
+
+# Prisms 
+Prism Chip
+Flawed Prism 
+Flawless Prism 
+Rainbow Prism 
+
+# Magna I
+Tiamat Anima
+Tiamat Omega Anima
+Colossus Anima
+Colossus Omega Anima
+Leviathan Anima
+Leviathan Omega Anima
+Yggdrasil Anima
+Yggdrasil Omega Anima
+Luminiera Anima
+Luminiera Omega Anima
+Celeste Anima
+Celeste Omega Anima 
+Green Dragon Eye
+Resolute Reactor
+Fanned Fin
+Genesis Bud
+Primal Bit
+Black Fog Sphere
+True Wind Anima
+True Fire Anima
+True Water Anima
+True Earth Anima
+True Light Anima
+True Dark Anima
+Omega Fragment 
+
+# Magna II 
+Shiva Anima 
+Shiva Omega Anima 
+Grimnir Anima 
+Grimnir Omega Anima 
+Europa Anima 
+Europa Omega Anima 
+Alexiel Anima 
+Alexiel Omega Anima 
+Metatron Anima 
+Metatron Omega Anima 
+Avatar Anima 
+Avatar Omega Anima 
+
+# Bahamut
+Horn of Bahamut 
+Primeval Horn 
+Dawn Anima 
+Dusk Anima 
+Star Sand Scoop 
+Meteorite Fragment
+Meteorite
+Primal Core 
+Astrum Fragment 
+Ultima Unit
+Azure Spirits 
+Crimson Spirits 
+
+# Grand Order 
+Bright Spirits 
+Murky Spirits 
+Peacemaker Star 
+Azure Feather 
+Heavenly Horn 
+Verdant Azurite 
+
+# Akasha 
+Hollow Key 
+Silver Sword Shard 
+Silver Dagger Shard 
+Silver Spear Shard 
+Silver Axe Shard 
+Silver Staff Shard 
+Silver Gun Shard 
+Silver Gauntlet Shard 
+Silver Bow Shard 
+Silver Harp Shard 
+Silver Katana Shard 
+
+# Four Primarchs 
+Michael Anima 
+Gabriel Anima 
+Uriel Anima 
+Raphael Anima 
+Fire Pinion
+Water Pinion
+Earth Pinion
+Wind Pinion
+Fire Halo
+Water Halo
+Earth Halo
+Wind Halo
+
+# Endgame 
+Dark Residue 
+Shadow Substance 
+Tears of the Apocalypse 
+Abyssal Wing 
+Cunning Devil's Horn
+Ultimate memory 
+
+# Co-op and Showdowns 
+Infernal Garnet 
+Frozen Hell Prism 
+Evil Judge Crystal 
+Horseman's Plate 
+Halo Light Quartz 
+Phantom Demon Jewel 
+Fire Grimoire 
+Water Grimoire 
+Earth Grimoire 
+Wind Grimoire 
+Jasper Scale 
+Scorching Peak 
+Ifrit Anima 
+Ifrit Omega Anima 
+Mourning Stone 
+Crystal Spirit 
+Cocytus Anima 
+Cocytus Omega Anima 
+Scrutiny Stone 
+Luminous Judgement 
+Vohu Manah Anima 
+Vohu Manah Omega Anima 
+Sagittarius Arrowhead
+Sagittarius Rune 
+Sagittarius Anima 
+Sagittarius Omega Anima 
+Solar Ring 
+Sunlight Quartz 
+Corow Anima 
+Corow Omega Anima 
+Twilight Cloth Strip 
+Shadow Sliver 
+Diablo Anima 
+Diablo Omega Anima 
+Bronze-Plated Disk 
+Silver-Plated Disk 
+Gold-Plated Disk 
+Gleaming Sand Bottle 
+Mystical Flame 
+Gleaming Water Jug 
+Mystical Splash 
+Gleaming Stone 
+Mystical Alluvium 
+Gleaming Feather 
+Mystical Feather 
+Searing Stone 
+Resplendent Coral 
+Opulent Amber 
+Vortical Pinwheel 
+Warrior Creed 
+Mage Creed 
+
+# Lindwurm, Malice, and similar non-endgame raids 
+Golden Scale 
+Lineage Fragment 
+Genesis Fragment 
+Malice Fragment 
+Rose Crystal Petal 
+Rose Crystal 
+
+# ROTB 
+Zhuque Seal 
+Xuanwu Seal
+Baihu Seal
+Qinglong Seal
+Zhu Jadeite 
+Xuan Jadeite 
+Bai Jadeite 
+Qing Jadeite 
+Golden Talisman
+Golden Ream 
+Obsidian Talisman 
+Obsidian Ream 
+Huanglong Anima 
+Qilin anima 
+
+# Tier I    
+Nezha Anima
+Nezha Omega Anima
+Twin Elements Anima
+Twin Elements Omega Anima
+Macula Marius Anima
+Macula Marius Omega Anima
+Medusa Anima
+Medusa Omega Anima
+Apollo Anima
+Apollo Omega Anima
+Dark Angel Olivia Anima
+Dark Angel Olivia Omega Anima
+
+# Tier II
+Garuda Anima
+Garuda Omega Anima
+Athena Anima
+Athena Omega Anima
+Baal Anima
+Baal Omega Anima
+Grani Anima
+Grani Omega Anima
+Odin Anima
+Odin Omega Anima
+Lich Anima
+Lich Omega Anima
+
+# Tier III    
+Morrigna Anima
+Promoetheus Anima
+Ca Ong Anima
+Gilgamesh Anima
+Hector Anima
+Anubis Anima
+
+# Arcarum 
+Fire Verum Proof 
+Water Verum Proof 
+Earth Verum Proof 
+Wind Verum Proof 
+Sephira Stone 
+Flameborne Astra 
+Aquaborne Astra 
+Earthborne Astra 
+Windborne Astra 
+Lightborne Astra 
+Darkborne Astra 
+Aurora Haze 
+Chaotic Haze 
+Justice Idean
+Hanged Man Idean
+Death Idean
+Temperance Idean 
+Devil Idean
+Tower Idean
+Star Idean
+Moon Idean
+Sun Idean
+Judgement Idean
+Aquila Fragment 
+Bellator Fragment 
+Celsus Fragment 
+
+# Island Materials 
+Mithra Anima 
+Satin Feather
+Zephyr Feather
+Flying Sprout
+Fine Sand Bottle
+Untamed Flame
+Blistering Ore
+Fresh Water Jug
+Soothing Splash
+Glowing Coral
+Rough Stone
+Coarse Alluvium
+Swirling Amber
+Falcon Feather
+Spring Water Jug
+Vermillion Stone
+Slimy Shroom
+Hollow Soul
+Lacrimosa
+Wheat Stalk
+Iron Cluster
+Olea Plant
+Indigo Fruit
+Foreboding Clover
+Blood Amber
+Sand Brick
+Native Reed
+Antique Cloth
+Prosperity Flame
+Explosive Material
+Steel Liquid
+Dydroit Stone
+Skyrock Blossom
+Affinity Seed
+Firn
+Frozen Foliole
+Cold Mold
+Merkmal Fig
+Bastion Block
+Corroded Cartridge
+Riot Root
+Basii Fruit
+Raw Gemstone
+Toxic Tulip
+Bestia Fruit
+Jumbo Beast Bone
+Kluger Herb
+Rhem Pepper
+Broken Teacup
+Rusty Eave
+Translucent Silk
+Meditative Sutra
+Dusty Book

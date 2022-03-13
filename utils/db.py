@@ -112,12 +112,24 @@ def get_profile(conn, discord_id):
 
     return profile 
 
+def create_donation_table(conn):
+    materials_list = 'materials_list.txt'
+    items = []
+
+    with open(materials_list) as f:
+        for line in f:
+            # Remove comments and empty lines 
+            if not line.startswith('#') and line != '\n':
+                line = line.rstrip().replace("'", '').replace('-', ' ')
+                items.append(line)
+
 if __name__ == '__main__':
     conn = connect()
     if conn:
         #create_profile_table(conn)
-        drop_all_rows(conn, 'members')
+        create_donation_table(conn)
+        #drop_all_rows(conn, 'members')
         conn.close()
     else:
-        raise Exception
+        pass
 
