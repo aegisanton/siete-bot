@@ -28,7 +28,7 @@ def connect():
 
 def create_profile_table(conn):
     statement = '''CREATE TABLE IF NOT EXISTS members (
-        discord_id integer PRIMARY KEY,
+        discord_id bigint PRIMARY KEY,
         gbf_id integer,
         server_nick text,
         crystals integer DEFAULT 0,
@@ -48,8 +48,32 @@ def create_profile_table(conn):
         dark_a varchar(30),
         dark_b varchar(30),
         misc_a varchar(30),
-        misc_b varchar(30);
+        misc_b varchar(30)
     ) '''
+
+    cur = conn.cursor()
+    cur.execute(statement)
+    conn.commit()
+    cur.close()
+
+def drop_table(conn, table_name):
+    '''
+    CURRENTLY BROKEN: syntax error 
+    '''
+    statement = '''DROP TABLE IF EXISTS %s
+    CASCADE
+    '''
+
+    cur = conn.cursor()
+    cur.execute(statement, (table_name,))
+    conn.commit()
+    cur.close()
+
+def drop_all_rows(conn, table_name):
+    '''
+    CURRENTLY BROKEN: syntax error 
+    '''
+    statement = 'DELETE FROM members'
 
     cur = conn.cursor()
     cur.execute(statement)
@@ -63,11 +87,11 @@ def create_profile(conn, discord_id, server_nick, gbf_id=None):
     statement = '''INSERT INTO members(discord_id, server_nick, gbf_id)
     VALUES (%s, %s, %s)
     ON CONFLICT (discord_id) DO NOTHING
-    RETURNING *;
+    RETURNING *
     '''
 
     cur = conn.cursor()
-    cur.execute(statement, discord_id, server_nick, gbf_id)
+    cur.execute(statement, (discord_id, server_nick, gbf_id))
     profile = cur.fetchone()
     conn.commit()
     cur.close()
@@ -81,9 +105,8 @@ def get_profile(conn, discord_id):
     statement = '''SELECT * FROM members
     WHERE discord_id = %s
     '''
-
     cur = conn.cursor()
-    cur.execute(statement, discord_id)
+    cur.execute(statement, (discord_id,))
     profile = cur.fetchone()
     cur.close()
 
@@ -92,7 +115,8 @@ def get_profile(conn, discord_id):
 if __name__ == '__main__':
     conn = connect()
     if conn:
-        create_profile_table(conn)
+        #create_profile_table(conn)
+        drop_all_rows(conn, 'members')
         conn.close()
     else:
         raise Exception
