@@ -11,11 +11,17 @@ from disnake import ApplicationCommandInteraction
 from disnake.ext import commands
 from disnake.ext.commands import Bot
 
-if not os.path.isfile('config.json'):
-    sys.exit('config.json is required!')
+DEBUG = False
+
+if DEBUG:
+    if not os.path.isfile('config.json'):
+        sys.exit('config.json is required!')
+    else:
+        with open('config.json') as f:
+            config = json.load(f)
+            TOKEN = config['token']
 else:
-    with open('config.json') as f:
-        config = json.load(f)
+    TOKEN = os.environ['discord_token']
     
 intents = disnake.Intents.default()
 bot = Bot(command_prefix=config['prefix'], intents=intents)
@@ -58,6 +64,6 @@ if __name__ == '__main__':
     init_commands('slash')
     #init_commands('normal')
     
-bot.run(config['token'])
+bot.run(TOKEN)
 
 

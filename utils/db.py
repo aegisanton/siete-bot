@@ -4,11 +4,17 @@ import json
 import sys 
 import os 
 
-if not os.path.isfile('config.json'):
-    sys.exit('config.json is required!')
+DEBUG = False
+
+if DEBUG:
+    if not os.path.isfile('config.json'):
+        sys.exit('config.json is required!')
+    else:
+        with open('config.json') as f:
+            config = json.load(f)
+            URL = config['db_url']
 else:
-    with open('config.json') as f:
-        config = json.load(f)
+    URL = os.environ['DATABASE_URL']
 
 def connect():
     try:
