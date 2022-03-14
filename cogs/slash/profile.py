@@ -368,6 +368,11 @@ class Profile(commands.Cog, name='profile-slash'):
         user = interaction.user
         nick = user.nick or user.name
 
+        # Clean out negative values 
+        for key, val in resources.items():
+            if val < 0:
+                resources[key] = 0
+
         # Retrieve profile if it exists
 
         conn = db.connect()

@@ -205,7 +205,7 @@ def create_donation_table(conn):
 
     columns = [sql.Identifier(v).as_string(cur) + f' integer DEFAULT 0 CHECK ({sql.Identifier(v).as_string(cur)} >= 0)' for v in variables]
 
-    statement = 'CREATE TABLE IF NOT EXISTS donations (discord_id bigint PRIMARY KEY REFERENCES members,{0})'
+    statement = 'CREATE TABLE IF NOT EXISTS donations (discord_id bigint PRIMARY KEY REFERENCES members ON DELETE CASCADE,{0})'
 
     model_query = sql.SQL(statement)
     column_list = sql.SQL(','.join(columns))
@@ -243,9 +243,9 @@ if __name__ == '__main__':
     conn = connect()
     if conn:
         #create_profile_table(conn)
-        #drop_table(conn, 'donations')
-        create_donation_table(conn)
-        #drop_all_rows(conn, 'members')
+        #drop_table(conn, 'members')
+        #create_donation_table(conn)
+        #drop_all_rows(conn, 'donatio')
         conn.close()
     else:
         pass
