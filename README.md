@@ -2,7 +2,7 @@
 
 ![alt text](https://github.com/aegisanton/siete-bot/blob/main/Siete.jpg?raw=true)
 
-Siete Bot is a Discord Bot made specifically for the GBF crew Luminosity. The creator of the bot is the crew captain Anton.
+Siete Bot is a Discord Bot made specifically for the GBF crew Luminosity. The creator of the bot is the crew captain Anton (who absolutely adores Siete!). The bot is currently deployed on Heroku, using the Heroku Postgres add-on to handle the database functionality.
 
 After the 8th anniversary update for GBF, the crew island resort feature made it apparent that the oldschool way of using Google Sheets to track member contributions would be way too impractical. Siete Bot was created to make it easy to quickly and easily note down your contributions without the need to leave Discord where all of the communication takes place. Having a custom bot also enables the addition of any features that the crew might want! 
 
