@@ -25,7 +25,7 @@ def connect():
         #    port=config['db_port'],
         #    password=['db_pw']
         #)
-        conn = psycopg2.connect(config['db_url'], sslmode='require')
+        conn = psycopg2.connect(URL, sslmode='require')
         
         return conn
 
