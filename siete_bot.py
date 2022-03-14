@@ -20,11 +20,13 @@ if DEBUG:
         with open('config.json') as f:
             config = json.load(f)
             TOKEN = config['token']
+            PREFIX = config['prefix']
 else:
     TOKEN = os.environ['discord_token']
+    PREFIX = os.environ['prefix']
     
 intents = disnake.Intents.default()
-bot = Bot(command_prefix=config['prefix'], intents=intents)
+bot = Bot(command_prefix=PREFIX, intents=intents)
 
 @bot.event
 async def on_ready():
