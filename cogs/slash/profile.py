@@ -9,11 +9,11 @@ from disnake.ext import commands
 from utils import db
 
 FIRE_SUMMONS = ['Agni', 'Colossus Omega', 'Shiva', 'Michael', 'Red Hare', 'Surtr', 'Wilnas', 'Athena (Summer)', 'Satyr (Summer)']
-WATER_SUMMONS = ['Varuna', 'Leviathan Omega', 'Europa', 'Gabriel', 'Charybdis', 'Princess Long Ji', 'Bonito', 'Kaguya', 'Macual Marius (Summer)']
+WATER_SUMMONS = ['Varuna', 'Leviathan Omega', 'Europa', 'Gabriel', 'Charybdis', 'Princess Long Ji', 'Bonito', 'Kaguya', 'Macual Marius (Summer)', 'Nobiyo', 'White Rabbit', 'Black Rabbit', 'Cait Sith']
 WIND_SUMMONS = ['Zephyrus', 'Tiamat Omega', 'Grimnir', 'Raphael', 'Owlcat', 'Elil', 'Ewiyar', 'Demonbream', 'Freyr', 'Rose Queen (Summer)', 'Tiamat (Summer)']
 EARTH_SUMMONS = ['Titan', 'Yggdrasil Omega', 'Godsworn Alexiel', 'Uriel', 'Mammoth', 'Dogu', 'Galleon', 'Gorilla', 'Tsuchinoko', 'Freyr (Yukata)', 'Mandrake (Summer)', 'Yggdrasil (Summer)']
-LIGHT_SUMMONS = ['Zeus', 'Luminiera Omega', 'Lucifer', 'Metatron', 'Halluel and Malluel', 'Grand Order', 'Artemis', 'Heimdallr', 'Aphrodite', 'Thor', 'Kaguya (Summer)']
-DARK_SUMMONS = ['Hades', 'Celeste Omega', 'Bahamut', 'Sariel', 'Belial', 'Beelzebub', 'Zirnitra', 'Nyarlathotep', 'Typhon', 'Sariel (Holiday)']
+LIGHT_SUMMONS = ['Zeus', 'Luminiera Omega', 'Lucifer', 'Metatron', 'Halluel and Malluel', 'Grand Order', 'Artemis', 'Heimdallr', 'Aphrodite', 'Thor', 'Kaguya (Summer)', 'Huanglong']
+DARK_SUMMONS = ['Hades', 'Celeste Omega', 'Bahamut', 'Sariel', 'Belial', 'Beelzebub', 'Zirnitra', 'Nyarlathotep', 'Typhon', 'Sariel (Holiday)', 'Qilin']
 MISC_SUMMONS = ['Qilin', 'Huanglong', 'White Rabbit', 'Black Rabbit', 'Kaguya', 'Belle Sylphid', 'Nobiyo', 'Belial', 'Beelzebub', 'Cait Sith']
 
 def embed_profile(bot, profile, user, spark=False, summon=False):
@@ -113,16 +113,16 @@ def embed_profile(bot, profile, user, spark=False, summon=False):
         inline=False
     )
     embed.add_field(
-        name='Wind Summons',
-        value=f'''{wind_emo} {wind_a}
-        {wind_emo} {wind_b}
+        name='Earth Summons',
+        value=f'''{earth_emo} {earth_a}
+        {earth_emo} {earth_b}
         ''',
         inline=False
     )
     embed.add_field(
-        name='Earth Summons',
-        value=f'''{earth_emo} {earth_a}
-        {earth_emo} {earth_b}
+        name='Wind Summons',
+        value=f'''{wind_emo} {wind_a}
+        {wind_emo} {wind_b}
         ''',
         inline=False
     )
@@ -213,20 +213,6 @@ class Profile(commands.Cog, name='profile-slash'):
             required=False
         ),
         Option(
-            name='wind_a',
-            description='Wind Support Summon A',
-            type=OptionType.string,
-            choices=WIND_SUMMONS,
-            required=False
-        ),
-        Option(
-            name='wind_b',
-            description='Wind Support Summon B',
-            type=OptionType.string,
-            choices=WIND_SUMMONS,
-            required=False
-        ),    
-        Option(
             name='earth_a',
             description='Earth Support Summon A',
             type=OptionType.string,
@@ -240,6 +226,20 @@ class Profile(commands.Cog, name='profile-slash'):
             choices=EARTH_SUMMONS,
             required=False
         ),
+        Option(
+            name='wind_a',
+            description='Wind Support Summon A',
+            type=OptionType.string,
+            choices=WIND_SUMMONS,
+            required=False
+        ),
+        Option(
+            name='wind_b',
+            description='Wind Support Summon B',
+            type=OptionType.string,
+            choices=WIND_SUMMONS,
+            required=False
+        ),    
         Option(
             name='light_a',
             description='Light Support Summon A',
