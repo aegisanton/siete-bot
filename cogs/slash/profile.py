@@ -37,9 +37,10 @@ def embed_profile(bot, profile, user, spark=False, summon=False):
             ''',
             color=0x74daff            
         )
-        embed.set_thumbnail(
-            url=user.avatar.url
-        )
+        if user.avatar:
+            embed.set_thumbnail(
+                url=user.avatar.url
+            )
 
         return embed
 
@@ -63,9 +64,10 @@ def embed_profile(bot, profile, user, spark=False, summon=False):
             ''',
             color=0x74daff  
         )
-        embed.set_thumbnail(
-            url=user.avatar.url
-        )
+        if user.avatar:
+            embed.set_thumbnail(
+                url=user.avatar.url
+            )
 
         return embed
 
@@ -73,9 +75,10 @@ def embed_profile(bot, profile, user, spark=False, summon=False):
         title=f'**Profile of {user.nick or user.name}**',
         color=0x74daff
     )
-    embed.set_thumbnail(
-        url=user.avatar.url
-    )
+    if user.avatar:
+        embed.set_thumbnail(
+            url=user.avatar.url
+        )
     embed.add_field(
         name='GBF ID',
         value=gbf_id,
