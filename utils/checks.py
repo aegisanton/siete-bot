@@ -39,3 +39,15 @@ def not_blacklisted():
 
     return commands.check(predicate)
 
+def is_crew_member():
+    """
+    This is a custom check to see if the user has the 'Crew' role.
+    """
+
+    async def predicate(context):
+        if not context.author or not context.author.get_role(562257149175005212):
+            raise Exception
+        return True
+
+    return commands.check(predicate)
+

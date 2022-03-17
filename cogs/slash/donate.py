@@ -8,6 +8,7 @@ from disnake import ApplicationCommandInteraction, Option, OptionType
 from disnake.ext import commands
 from enum import Enum
 from utils import db
+from utils import checks
 
 MATERIALS = list(db.read_materials().keys())
 
@@ -34,6 +35,7 @@ class Donate(commands.Cog, name='donate-slash'):
         ]
     )
     #@checks.not_blacklisted()
+    @checks.is_crew_member()
     @commands.check(commands.has_role('Crew'))
     async def donate(self, interaction, quantity: commands.Range[1, ...], material):
         """
