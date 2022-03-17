@@ -22,3 +22,12 @@ class UserNotOwner(Exception):
     def __init__(self, message="User is not an owner of the bot!"):
         self.message = message
         super().__init__(self.message)
+
+class UserNotCrew(Exception):
+    """
+    Thrown when a user is attempting something, but is not a crew member.
+    """
+
+    def __init__(self, message="User is not an crew member!"):
+        self.message = message
+        super().__init__(self.message)
