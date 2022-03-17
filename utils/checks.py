@@ -46,7 +46,7 @@ def is_crew_member():
 
     async def predicate(context):
         if not context.author or not context.author.get_role(562257149175005212):
-            raise Exception
+            raise UserNotCrew
         return True
 
     return commands.check(predicate)
